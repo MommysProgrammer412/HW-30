@@ -50,10 +50,16 @@ class CsvFile(AbstractFile):
         self.file_path = file_path
     def read(self):
         '''метод для чтения данных из csv файла.'''
-        pass
+        with open(self.file_path, 'r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            return list(reader)
     def write(self, data):
         '''метод для записи данных в csv файл'''
-        pass
+        with open(self.file_path, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
     def append(self, data):
         '''метод для добавления данных в csv файл'''
-        pass
+        with open(self.file_path, 'a', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(data)
